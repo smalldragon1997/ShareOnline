@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+
+<!DOCTYPE mapper  
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.share.dao.TypeDao">
+
+  <select id="getTypeListByCount"  resultMap="type">
+  	select * from type limit #{start,jdbcType=INTEGER},#{count,jdbcType=INTEGER}
+  </select>
+  <select id="getAllTypeList"  resultMap="type">
+  	select * from type
+  </select>
+  <select id="getTypeByTypeId"  parameterType="INTEGER" resultMap="type">
+  	select * from type where type_id=#{typeId}
+  </select>
+  
+  <!-- 配置映射字段 -->  
+    <resultMap type="com.share.entity.Type" id="type">  
+        <id property="typeId" column="type_id"/>  
+        <result property="typeName" column="type_name"/>  
+    </resultMap>
+</mapper>  

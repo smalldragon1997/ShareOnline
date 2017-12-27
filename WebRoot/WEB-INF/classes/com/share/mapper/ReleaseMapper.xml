@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+
+<!DOCTYPE mapper  
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.share.dao.ReleaseDao">
+
+
+	<insert id="insertRelease" parameterType="com.share.entity.Release">
+		insert into
+		released(comm_id,user_id,info,price,start_time,end_time,release_time,state,title,img)
+		values(#{commId},#{userId},#{info},#{price},#{startTime},#{endTime},#{releaseTime},#{state},#{title},#{img})
+	</insert>
+	<select id="getReleaseByCommId" parameterType="Integer" resultMap="release">
+		select * from released where comm_id=#{commId}
+	</select>
+	<select id="getAllReleaseByUserId" parameterType="Integer" resultMap="release">
+		select * from released where user_id=#{userId}
+	</select>
+	<select id="getAllReleaseByUserIdAndState" resultMap="release">
+		select * from released where user_id= #{userId,jdbcType=INTEGER} and state=#{state,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteRelease" parameterType="Integer">
+		delete from released where
+		comm_id=#{commId}
+	</delete>
+	<update id="updateRelease" parameterType="com.share.entity.Release">
+		update released set
+		user_id=#{userId},info=#{info},price=#{price},start_time=#{startTime},end_time=#{endTime},
+		release_time=#{releaseTime},state=#{state},title=#{title},img=#{img}
+		where
+		comm_id=#{commId}
+	</update>
+	
+	<!-- 配置映射字段 -->
+	<resultMap type="com.share.entity.Release" id="release">
+		<id property="commId" column="comm_id" />
+		<result property="userId" column="user_id" />
+		<result property="info" column="info" />
+		<result property="price" column="price" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+		<result property="releaseTime" column="release_time" />
+		<result property="state" column="state" />
+		<result property="title" column="title" />
+		<result property="img" column="img" />
+	</resultMap>
+</mapper>  

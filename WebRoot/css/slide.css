@@ -1,0 +1,11 @@
+.list{
+    background-color: #151515;
+    border-radius: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.list a{
+    text-align: center;
+    color: #F29E1C;
+    font-size: 20px;
+}

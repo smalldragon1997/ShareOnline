@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+
+<!DOCTYPE mapper  
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.share.dao.UserDao">
+   
+  <select id="getUserByUserId" parameterType="int" resultMap="user">
+  	select * from user where user_id=#{userId}
+  </select>
+  <insert id="insertUser" parameterType="com.share.entity.User" >
+  	insert into user(user_id,user_name)values(#{userId},#{userName})
+  </insert>
+  
+  <!-- 配置映射字段 -->  
+    <resultMap type="com.share.entity.User" id="user">  
+        <id property="userId" column="user_id"/>  
+        <result property="userName" column="user_name"/>  
+        <result property="info" column="info"/>  
+    </resultMap>
+</mapper>  

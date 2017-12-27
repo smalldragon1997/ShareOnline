@@ -1,0 +1,136 @@
+/*不可选择层*/
+.wall {
+	display: none;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: #000;
+	width: 100%; /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+	Height:100%;
+	filter: alpha(opacity = 60); /*设置透明度为60%*/
+	opacity: 0.6; /*非IE浏览器下设置透明度为60%*/
+	display: none; 
+	z-Index: 2;
+}
+
+/*登录框*/
+.login-form {
+	border-radius: 12px;
+	background-color: #9d9d9d;
+	position: absolute;
+	top: 30%;
+	left: 35%;
+	z-index: 500;
+}
+/*注册框*/
+.register-form {
+	border-radius: 12px;
+	background-color: #9d9d9d;
+	position: absolute;
+	top: 30%;
+	left: 35%;
+	z-index: 500;
+}
+/*第一行*/
+.header-top {
+	background-color: #2B2B2B;
+	height: 35px;
+}
+/*第一行左边联系方式*/
+.header-top-left {
+	color: #F29E1C;
+	line-height: 35px;
+	font-weight: bold;
+	font-size: 17px;
+}
+/*第一行右边 欢迎*/
+.header-top-right {
+	color: #ffffff;
+	line-height: 35px;
+	font-size: 17px;
+}
+/*第二行*/
+.header-middle {
+	background-color: #151515;
+	height: 180px;
+} /*第二行左边 LOGO*/
+.header-middle-left {
+	margin-top: 3%;
+}
+/*第二行中间*/
+.header-middle-center {
+	margin-top: 3%;
+}
+/*第二行中间 搜索框组件*/
+.header-middle-center-input {
+	width: 60%;
+	border: 0px;
+	padding-left: 10px;
+	outline: none;
+	background-color: #403E3C;
+	color: #B3B3B3;
+}
+/*第二行中间 搜索按钮组件*/
+.header-middle-center-btn {
+	font-weight: bold;
+	outline: none;
+	border: none;
+	background-color: #FFAA00;
+	cursor: pointer;
+}
+/*第二行中间 搜索按钮组件 hover*/
+.header-middle-center-btn:hover {
+	color: white;
+	background-color: #a56500;
+}
+
+.header-middle-right {
+	margin-top: 4%;
+}
+/*header右边的按钮*/
+.header-middle-right-btn {
+	margin-left: 2%;
+	border: 2px solid #FFAA00;
+	color: #FFAA00;
+	background-color: #151515;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 12px;
+	outline: none;
+}
+/*header右边的按钮 hover*/
+.header-middle-right-btn:hover {
+	color: white;
+	background-color: #FFAA00;
+}
+/*header导航栏*/
+.header-bottom-bar {
+	margin-top: 3%;
+	background-color: #2b2b2b;
+	border-radius: 12px;
+}
+
+.bar a:link, .bar a:visited {
+	line-height: 55px;
+	padding: 15px 5%;
+	font-weight: 150px;
+	color: white;
+	width: 120px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 20px;
+	transition-duration: 0.4s;
+}
+
+.bar a:hover, .bar a:active {
+	color: black;
+}
+
+.bar li:hover {
+	background-color: #ffaa00;
+}

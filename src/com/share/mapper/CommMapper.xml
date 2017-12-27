@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+
+<!DOCTYPE mapper  
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.share.dao.CommDao">
+   
+  
+  <insert id="insertComm" parameterType="com.share.entity.Comm" useGeneratedKeys="true" keyProperty="commId">
+	insert into comm(comm_name)values(#{commName})
+  </insert>  
+  <update id="updateComm" parameterType="com.share.entity.Comm" >
+	update comm set comm_name=#{commName} where comm_id=#{commId}
+  </update>  
+  <select id="getCommByCommId" parameterType="Integer" resultMap="comm">
+  	select * from comm where comm_id=#{commId}
+  </select>
+  <delete id="deleteComm" parameterType="Integer">
+  	delete from comm where comm_id=#{commId}
+  </delete>
+  <!-- 配置映射字段 -->  
+    <resultMap type="com.share.entity.Comm" id="comm">  
+        <id property="commId" column="comm_id"/>  
+        <result property="commName" column="comm_name"/>  
+    </resultMap>
+</mapper>  

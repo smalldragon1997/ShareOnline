@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+
+<!DOCTYPE mapper  
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.share.dao.RegisterDao">
+   
+  
+  <insert id="insertRegister" parameterType="com.share.entity.Register" useGeneratedKeys="true" keyProperty="userId">
+	insert into register(account,password,register_time,last_time)values(#{account},#{password},#{registerTime},#{lastTime})
+  </insert>  
+  <select id="getRegisterByAccount" parameterType="String" resultMap="register">
+  	select * from register where account=#{account}
+  </select>
+  <update id="updateRegisterLastTimeByAccount" parameterType="com.share.entity.Register">
+  	update register set last_time=#{lastTime} where account=#{account}
+  </update>
+  <!-- 配置映射字段 -->  
+    <resultMap type="com.share.entity.Register" id="register">  
+        <id property="userId" column="user_id"/>  
+        <result property="account" column="account"/>  
+        <result property="password" column="password"/>  
+        <result property="registerTime" column="register_time"/>  
+        <result property="lastTime" column="last_time"/>  
+    </resultMap>
+</mapper>  
