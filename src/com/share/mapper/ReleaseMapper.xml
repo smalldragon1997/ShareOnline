@@ -21,6 +21,9 @@
 	<select id="getAllReleaseByUserIdAndState" resultMap="release">
 		select * from released where user_id= #{userId,jdbcType=INTEGER} and state=#{state,jdbcType=INTEGER}
 	</select>
+	<select id="getAllReleaseByQuery" resultMap="release" parameterType="String">
+		select * from released where title like CONCAT('%',#{query},'%')
+	</select>
 	<delete id="deleteRelease" parameterType="Integer">
 		delete from released where
 		comm_id=#{commId}

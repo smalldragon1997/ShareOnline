@@ -17,5 +17,7 @@ public interface ReleaseDao
 
     public abstract List<Release> getAllReleaseByUserId(int i);
 
+    public abstract List<Release> getAllReleaseByQuery(String query);
+
     public abstract List<Release> getAllReleaseByUserIdAndState(@Param(value="userId") int i, @Param(value="state") int j);
 }

@@ -203,6 +203,13 @@ $(document).ready(function() {
 		//按钮名称
 		isLogin("released");
 	});
+	//点击搜索时是否有内容
+	$('#searchBtn').click(function(){
+		var data = $('#searchInput').val();
+		if(data==''){
+			return false
+		}
+	});
 	//加载热门共享列表
 	loadHotList();
 	//加载轮图列表
@@ -242,9 +249,9 @@ var loadHotList = function() {
 		dataType : "json",
 		type : "POST",
 		success : function(data) {
-			$.each(data, function(index, comment) {
+			$.each(data.list[3].hotList, function(index, comment) {
 				//对每一个列表名结果进行遍历
-				$('#hotList').append('<li><a href="javascript:void(0)">' + comment.typeName + '</a></li>');
+				$('#hotList').append('<li><a href="/shareOnline/main/getCommPageByType?typeId='+comment.typeId+'&query=">' + comment.typeName + '</a></li>');
 			});
 		},
 		error : function() {
@@ -260,18 +267,18 @@ var loadSlideList = function() {
 		type : "POST",
 		success : function(data) {
 			var i = 0;
-			$.each(data, function(index, comment) {
+			$.each(data.list[3].slideList, function(index, comment) {
 				//对每一个列表名结果进行遍历
 				if (i == 0) {
 					$('#slideCount').append('<li data-target="#myCarousel" data-slide-to="' + i + '" class="active"></li>');
 					$('#slideImage').append('<div class="item active">\n' +
-						'<a href="#"><img src="../images/type/' + comment.typeId + '.jpg" style="height: 500px;width:930px;"></a>\n' +
+						'<a href="/shareOnline/main/getCommPageByType?typeId='+comment.typeId+'&query="><img src="../images/type/' + comment.typeId + '.jpg" style="height: 500px;width:930px;"></a>\n' +
 						'<div class="carousel-caption">' + comment.typeName + '</div>\n' +
 						'</div>');
 				} else {
 					$('#slideCount').append('<li data-target="#myCarousel" data-slide-to="' + i + '"></li>');
 					$('#slideImage').append('<div class="item">\n' +
-						'<a href="#"><img src="../images/type/' + comment.typeId + '.jpg" style="height: 500px;width:930px;"></a>\n' +
+						'<a href="/shareOnline/main/getCommPageByType?typeId='+comment.typeId+'&query="><img src="../images/type/' + comment.typeId + '.jpg" style="height: 500px;width:930px;"></a>\n' +
 						'<div class="carousel-caption">' + comment.typeName + '</div>\n' +
 						'</div>');
 				}
@@ -301,9 +308,14 @@ var loadCommList = function() {
 				$(comment).attr('commListId',data.list[3].commNameList[index].typeId);
 			});
 			//遍历带有commListName的class的h2元素
-			$("h2[class='commListName']").each(function(index,comment){
-				//更改当前的text值
-				$(comment).text(data.list[3].commNameList[index].typeName);
+			$("div.commListName").each(function(index,comment){
+				//更改当前的name和跳转的链接
+				$(comment).append('<div class="col-lg-11">' +
+					'<h2> '+data.list[3].commNameList[index].typeName+'</h2>' +
+					'</div>' +
+					'<div class="col-lg-1">' +
+					'<h2><a href="/shareOnline/main/getCommPageByType?typeId='+data.list[3].commNameList[index].typeId+'&query=" class="btn btn-warning ediCommBtn" role="button">查看更多</a></h2>' +
+					'</div>');
 			});
 			
 			//遍历带有commList的class的div元素
@@ -367,38 +379,3 @@ var loadComms = function(comment) {
 		}
 	});
 }
-//
-////追加商品列表的函数
-//var loadIndexCommList = function(){
-//	$("div[commlistid]").each(function(){
-//		alert(JSON.stringify({commCount:4,commListId:$(this).attr('commListId')}));
-//		$.ajax({
-//			url : "/shareOnline/main/getIndexCommList",
-//			contentType : 'application/json;charset=utf-8',
-//			data : JSON.stringify({commCount:4,commListId:$(this).attr('commListId')}),
-//			dataType : "json",
-//			type : "POST",
-//			success : function(data) {
-//				$.each(data, function(index, comment) {
-//					$('div[commListId="'+comment.commListId+'"]').append('<div class="col-lg-3">\n'+
-//		                    '<div class="thumbnail" style="margin: 10px 0;">\n'+
-//	                        '<a href="javascript:void(0)">'+
-//	                            '<img src="'+comment.imgUrl+'" style="height: 150px;">'+
-//	                        '</a>'+
-//	                        '<div class="caption">'+
-//	                            '<h3>'+comment.title+'</h3>'+
-//	                            '<p>售价:'+comment.price+'</p>'+
-//	                            '<p>发布人:'+comment.userName+'</p>'+
-//	                        '</div>'+
-//	                   '</div>' +
-//	                '</div>');
-//				});
-//			},
-//			error : function() {
-//				alert('主页的商品列表 加载失败！服务器崩溃');
-//			}
-//		});
-//	})
-//}
-//	
-//}

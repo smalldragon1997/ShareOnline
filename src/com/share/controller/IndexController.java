@@ -28,25 +28,20 @@ public class IndexController {
 	// 首页热门共享 列表获取请求
 	@RequestMapping(value = "/indexHotList")
 	@ResponseBody
-	public List<Type> IndexHotList() {
+	public MsgJson<String, Object> IndexHotList() {
 		// 获取service传来的封装数据
 		MsgJson<String, Object> msgFromService = indexService.getIndexHotList();
-		// 将封装的数据分离 封装到传给view的数据
-		List<Type> jsonToView = (List<Type>) msgFromService.getJsonData("hotList");
-
-		return jsonToView;
+		return msgFromService;
 	}
 
 	// 首页轮播图 获取请求
 	@RequestMapping(value = "/indexSlideList")
 	@ResponseBody
-	public List<Type> IndexSlideList() {
+	public MsgJson<String, Object> IndexSlideList() {
 		// 获取service传来的封装数据
 		MsgJson<String, Object> msgFromService = indexService.getIndexSlideList();
-		// 将封装的数据分离 封装到传给view的数据
-		List<Type> jsonToView = (List<Type>) msgFromService.getJsonData("slideList");
 
-		return jsonToView;
+		return msgFromService;
 	}
 
 	// 首页商品列表
@@ -102,5 +97,15 @@ public class IndexController {
 			msgToView.setState(false);
 		}
 		return msgToView;
+	}
+	//进入查询页面
+	@RequestMapping(value = "/getCommPageByType")
+	@ResponseBody
+	public ModelAndView getLoginState(int typeId,String query,HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		session.setAttribute("typeId", typeId);
+		session.setAttribute("query", query);
+		mv.setViewName("query");
+		return mv;
 	}
 }

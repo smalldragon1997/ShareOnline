@@ -15,15 +15,15 @@
 				<form class="form-horizontal" href="#">
 					<br> <img src="<%=path%>/images/logo_orange.png"> <br>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">邮箱：</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label">邮箱：</label>
+						<div class="col-sm-9">
 							<input type="text" class="form-control" name="loginEmail"
 								placeholder="请输入账号">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">密码：</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label">密码：</label>
+						<div class="col-sm-9">
 							<input type="password" class="form-control" name="loginPassword"
 								placeholder="请输入密码">
 						</div>

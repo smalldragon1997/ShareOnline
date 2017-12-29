@@ -98,7 +98,8 @@ public class CommController {
 	// 修改
 	@RequestMapping(value = "reviseComm")
 	@ResponseBody
-	public MsgJson<String, Object> reviseComm(@RequestBody ReviseJson reviseJson, HttpServletRequest request,HttpSession session) {
+	public MsgJson<String, Object> reviseComm(@RequestBody ReviseJson reviseJson, HttpServletRequest request,
+			HttpSession session) {
 
 		// 初始化传递给Service的数据
 		MsgJson<String, Object> msgToService = MyMsgJson.newMsgjson();
@@ -145,7 +146,7 @@ public class CommController {
 	// 删除商品
 	@RequestMapping(value = "delComm")
 	@ResponseBody
-	public ModelAndView delComm(int commId, HttpServletRequest request,HttpSession session) {
+	public ModelAndView delComm(int commId, HttpServletRequest request, HttpSession session) {
 		// 初始化传入服务层是数据
 		MsgJson<String, Object> msgToService = MyMsgJson.newMsgjson();
 		// 图片储存位置
@@ -157,11 +158,11 @@ public class CommController {
 		MsgJson<String, Object> msgFromService = commService.dropComm(msgToService);
 		ModelAndView mv = new ModelAndView();
 		// 删除成功 返回已发布页面
-		if(msgFromService.getState())
+		if (msgFromService.getState())
 			mv.setViewName("released");
-		else 
+		else
 			mv.setViewName("index");
-		
+
 		return mv;
 	}
 
@@ -177,5 +178,20 @@ public class CommController {
 		List<Type> jsonToView = (List<Type>) msgFromService.getJsonData("typeList");
 
 		return jsonToView;
+	}
+
+	// 显示某一类型的商品
+	@RequestMapping(value = { "queryComm" })
+	@ResponseBody
+	public MsgJson<String, Object> getCommByType(HttpSession session,HttpServletRequest request) {
+		// 初始化传入服务层的数据
+		MsgJson<String, Object> msgToService = MyMsgJson.newMsgjson();
+		// 传入图片的显示路径
+		msgToService.setRequestData("imgPath", request.getScheme() + "://" + request.getServerName() + ":"
+				+ request.getServerPort() + request.getContextPath());
+		msgToService.setSessionData("typeId", session.getAttribute("typeId"));
+		msgToService.setSessionData("query", session.getAttribute("query"));
+		MsgJson<String, Object> msgFromService = commService.queryComm(msgToService);
+		return msgFromService;
 	}
 }

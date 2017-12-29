@@ -21,4 +21,6 @@ public interface CommService
     public abstract MsgJson<String, Object> getAllTypeList();
 
     public abstract MsgJson<String, Object> getReleasedComm(MsgJson<String, Object> msgFromController);
+    
+ 	public MsgJson<String, Object> queryComm(MsgJson<String, Object> msgFromController);
 }

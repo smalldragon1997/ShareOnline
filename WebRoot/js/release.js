@@ -105,7 +105,6 @@ $(document).ready(function() {
 			//防止重复提交
 			$(this).attr("disabled", "true").text('正在发布...'); //设置变灰按钮
 			var data = $('#releaseFrom').serializeJson();
-			alert(JSON.stringify(data));
 			$.ajax({
 				url : "/shareOnline/comm/releaseComm",
 				contentType : 'application/json;charset=utf-8',

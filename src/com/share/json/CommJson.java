@@ -16,89 +16,70 @@ public class CommJson
     private String img;
     private int price;
     private int commId;
+    private int typeId;
+	public CommJson(String typeName, String commName, String releaseTime, String availableTime, String img, int price,
+			int commId, int typeId) {
+		super();
+		this.typeName = typeName;
+		this.commName = commName;
+		this.releaseTime = releaseTime;
+		this.availableTime = availableTime;
+		this.img = img;
+		this.price = price;
+		this.commId = commId;
+		this.typeId = typeId;
+	}
+	public CommJson() {
+		super();
+	}
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+	public String getCommName() {
+		return commName;
+	}
+	public void setCommName(String commName) {
+		this.commName = commName;
+	}
+	public String getReleaseTime() {
+		return releaseTime;
+	}
+	public void setReleaseTime(String releaseTime) {
+		this.releaseTime = releaseTime;
+	}
+	public String getAvailableTime() {
+		return availableTime;
+	}
+	public void setAvailableTime(String availableTime) {
+		this.availableTime = availableTime;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getCommId() {
+		return commId;
+	}
+	public void setCommId(int commId) {
+		this.commId = commId;
+	}
+	public int getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
 
-    public CommJson(String typeName, String commName, String releaseTime, String availableTime, String img, int price, int commId)
-    {
-        this.typeName = typeName;
-        this.commName = commName;
-        this.releaseTime = releaseTime;
-        this.availableTime = availableTime;
-        this.img = img;
-        this.price = price;
-        this.commId = commId;
-    }
-
-    public CommJson()
-    {
-    }
-
-    public String getTypeName()
-    {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName)
-    {
-        this.typeName = typeName;
-    }
-
-    public String getCommName()
-    {
-        return commName;
-    }
-
-    public void setCommName(String commName)
-    {
-        this.commName = commName;
-    }
-
-    public String getReleaseTime()
-    {
-        return releaseTime;
-    }
-
-    public void setReleaseTime(String releaseTime)
-    {
-        this.releaseTime = releaseTime;
-    }
-
-    public String getAvailableTime()
-    {
-        return availableTime;
-    }
-
-    public void setAvailableTime(String availableTime)
-    {
-        this.availableTime = availableTime;
-    }
-
-    public String getImg()
-    {
-        return img;
-    }
-
-    public void setImg(String img)
-    {
-        this.img = img;
-    }
-
-    public int getPrice()
-    {
-        return price;
-    }
-
-    public void setPrice(int price)
-    {
-        this.price = price;
-    }
-
-    public int getCommId()
-    {
-        return commId;
-    }
-
-    public void setCommId(int commId)
-    {
-        this.commId = commId;
-    }
+    
 }

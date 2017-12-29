@@ -56,7 +56,7 @@ public class IndexServiceImpl implements IndexService {
 		return msgToController;
 	}
 
-	// 需要重构
+	// 获得首页的商品列表 需要重构
 	public MsgJson<String, Object> getIndexCommList(MsgJson<String, Object> msgFromController) {
 		MsgJson<String, Object> msgToController = MyMsgJson.newMsgjson();
 		List<Type> types = typeDao.getTypeListByCount(0, 8);
@@ -88,7 +88,7 @@ public class IndexServiceImpl implements IndexService {
 					img = msgFromController.getRequestData("imgPath") + "/images/type/" + types.get(i).getTypeId()
 							+ ".jpg";
 				CommJson commJson = new CommJson(((Type) types.get(i)).getTypeName(), comm.getCommName(), releaseTime,
-						availableTime, img, price, commId);
+						availableTime, img, price, commId,types.get(i).getTypeId());
 				commJsons.add(commJson);
 			}
 

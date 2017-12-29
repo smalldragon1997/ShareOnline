@@ -28,18 +28,23 @@
 		<div class="col-lg-2"></div>
 		<div class="col-lg-8">
 			<div class="row">
-				<div class="col-lg-3 header-middle-left">
-					<img src="<%=path%>/images/logo_orange.png">
+			<h1></h1>
+			</div>
+			<div class="row">
+			<h1></h1>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 ">
+					<a href="/shareOnline/user/index"><img src="<%=path%>/images/logo_orange.png"></a>
 				</div>
-				<div class="col-lg-4 header-middle-center">
-					<form action="#" method="get" style="display: inline">
-						<input class="header-middle-center-input input-lg"
-							placeholder="请输入搜索内容..." type="text" /> <input
-							class="header-middle-center-btn input-lg" type="submit"
-							value="Search">
+				<div class="col-lg-4">
+					<form action="/shareOnline/main/getCommPageByType" method="get" style="display: inline">
+						<input class="header-middle-center-input input-lg" placeholder="请输入搜索内容..." type="text" name="query" id="searchInput"/>
+						<input type="hidden" name="typeId" value="1">
+						<input class="header-middle-center-btn input-lg" type="submit" value="Search" id="searchBtn">
 					</form>
 				</div>
-				<div class="col-lg-5 header-middle-right">
+				<div class="col-lg-5 ">
 					<button class="header-middle-right-btn" id="releasedBtn">已发布</button>
 					<button class="header-middle-right-btn" id="billBtn">已交易</button>
 					<button class="header-middle-right-btn" id="boughtBtn">已购买</button>
@@ -48,6 +53,12 @@
 				</div>
 			</div>
 			<div class="row">
+			<div class="row">
+			<h1></h1>
+			</div>
+			<div class="row">
+			<h1></h1>
+			</div>
 				<div class="header-bottom-bar bar">
 					<ul class="nav nav-pills">
 						<li><a href="/shareOnline/user/index">主页</a></li>
@@ -61,3 +72,4 @@
 		<div class="col-lg-2"></div>
 	</div>
 </div>
+

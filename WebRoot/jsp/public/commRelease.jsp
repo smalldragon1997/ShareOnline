@@ -16,10 +16,10 @@
 			<div class="row ">
 				<form class="form-horizontal" id="releaseFrom">
 					<div class=" form-group row">
-						<div class="col-lg-2">
+						<div class="col-lg-3">
 							<h3>类型：</h3>
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-9">
 							<h3>
 								<select class="form-control" name="typeId" id="typeList">
 									<option value="0">--请选择账号类型--</option>
@@ -31,10 +31,10 @@
 						</div>
 					</div>
 					<div class=" form-group row">
-						<div class="col-lg-2">
+						<div class="col-lg-3">
 							<h3>标题：</h3>
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-9">
 							<h3>
 								<input type="text" class="form-control" name="commTitle"
 									placeholder="输入商品标题">
@@ -42,10 +42,10 @@
 						</div>
 					</div>
 					<div class=" form-group row">
-						<div class="col-lg-2">
+						<div class="col-lg-3">
 							<h3>价格：</h3>
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-9">
 							<h3>
 								<input type="text" class="form-control" name="commPrice"
 									placeholder="输入商品价格">
@@ -53,10 +53,10 @@
 						</div>
 					</div>
 					<div class=" form-group row">
-						<div class="col-lg-2">
+						<div class="col-lg-3">
 							<h3>有效时间：</h3>
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-9">
 							<h3>
 								开始时间:<input class="datetimepicker" id="startInput"
 									name="startTime">
@@ -71,10 +71,10 @@
 					</div>
 
 					<div class="form-group row">
-						<div class="col-lg-2">
+						<div class="col-lg-3">
 							<h3>简介：</h3>
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-9">
 							<h3>
 								<textarea class="form-control" rows="8" placeholder="介绍一下商品吧"
 									name="introduce" style="resize:none;"></textarea>
@@ -87,10 +87,10 @@
 			<div class="row line">
 				<form>
 					<div class="form-group row">
-						<div class="col-lg-2">
+						<div class="col-lg-3">
 							<h3>上传图片：</h3>
 						</div>
-						<div class="col-lg-10">
+						<div class="col-lg-9">
 							<h3>
 								<input type="file" id="imgUpload" onchange="uploadImg(this);">
 								<span><img id="imgShow" src="" width="120" height="120" /></span>

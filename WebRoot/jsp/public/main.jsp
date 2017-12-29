@@ -35,50 +35,50 @@
 			</div>
 			<!-- 热门 轮播图 结束 -->
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>
 			<div commListId="">
-				<div class="row line">
-					<h2 class="commListName"></h2>
+				<div class="row line commListName">
+					
 				</div>
 				<div class="row commList"></div>
 			</div>

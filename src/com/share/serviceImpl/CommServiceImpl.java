@@ -10,6 +10,7 @@ import com.share.entity.*;
 import com.share.json.*;
 import com.share.service.CommService;
 import com.share.tools.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -354,7 +355,7 @@ public class CommServiceImpl implements CommService {
 				img = msgFromController.getRequestData("imgPath") + "/images/type/" + commType.getTypeId() + ".jpg";
 			// 封装
 			CommJson commJson = new CommJson(type.getTypeName(), comm.getCommName(), releaseTime, availableTime, img,
-					price, commId);
+					price, commId,commType.getTypeId());
 			// 添加到返回的集合中
 			commJsons.add(commJson);
 		}
@@ -363,4 +364,55 @@ public class CommServiceImpl implements CommService {
 		return msgToController;
 	}
 
+	// 获得搜索的商品
+	public MsgJson<String, Object> queryComm(MsgJson<String, Object> msgFromController){
+		//初始化返回控制层的数据
+		MsgJson<String, Object> msgToController = MyMsgJson.newMsgjson();
+		//获得控制层传来的typeId和query
+		int typeId = (int) msgFromController.getSessionData("typeId");
+		String typeName = typeDao.getTypeByTypeId(typeId).getTypeName();
+		String query = (String) msgFromController.getSessionData("query");
+
+		String imgPath = (String) msgFromController.getRequestData("imgPath")+"/images/comm/";
+		System.out.println(query);
+		//根据typeId 获得商品类型列表
+		List<CommType> commTypes = commTypeDao.getCommTypeByTypeId(typeId);
+		//初始化储存CommJson的列表
+		List<CommJson> commJsons = new ArrayList<CommJson>();
+		//如果query为空 那么久搜索相应的类型 如果非空 则搜索这个类别中商品title相应的关键字
+		if(query.length()==0){
+			//遍历商品类型列表
+			for (int i = 0; i < commTypes.size(); i++) {
+				//通过commId获得release
+				Release release = releaseDao.getReleaseByCommId(commTypes.get(i).getCommId());
+				String availableTime = release.getStartTime()+" 至 "+release.getEndTime();
+				String releaseTime = release.getReleaseTime().toString();
+				//将数据封装到commJson
+				CommJson commJson = new CommJson(typeName,release.getTitle(),releaseTime,availableTime,imgPath+release.getImg(),release.getPrice(),commTypes.get(i).getCommId(),typeId);
+				//添加到commjsons
+				commJsons.add(commJson);
+			}
+		}else{
+			//遍历商品类型列表 搜索满足条件的商品
+			List<Release> releases = releaseDao.getAllReleaseByQuery(query);
+			for (int i = 0; i < releases.size(); i++) {
+				Release release = releases.get(i);
+				//通过commId获得release
+				String availableTime = release.getStartTime()+" 至 "+release.getEndTime();
+				String releaseTime = release.getReleaseTime().toString();
+				//将数据封装到commJson
+				CommJson commJson = new CommJson(typeName,release.getTitle(),releaseTime,availableTime,imgPath+release.getImg(),release.getPrice(),releases.get(i).getCommId(),typeId);
+				//添加到commjsons
+				commJsons.add(commJson);
+			}
+			typeName = " 搜索结果";
+		}
+		if(commJsons.size()==0){
+			msgToController.setMsg("当前查询无结果哦");
+			msgToController.setState(false);
+		}
+		msgToController.setJsonData("typeName", typeName);
+		msgToController.setJsonData("comms", commJsons);
+		return  msgToController;
+	}
 }
