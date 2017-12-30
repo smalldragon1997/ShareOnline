@@ -63,8 +63,12 @@ public class CommServiceImpl implements CommService {
 			String fileSuffix = imgName.substring(imgName.lastIndexOf("."), imgName.length());
 			// 是否已经上传过图片
 			if (msgFromController.getSessionData("imgName") == null) {
+				System.out.println("图片不存在哦");
 				msgFromController.setSessionData("imgName",
 						new Date().getTime() + "_" + new Random().nextInt(1000) + fileSuffix);
+			}else {
+
+				System.out.println("图片已经存在哦"+msgFromController.getSessionData("imgName"));
 			}
 			// 新的图片文件名
 			imgName = msgFromController.getSessionData("imgName").toString();
@@ -291,9 +295,9 @@ public class CommServiceImpl implements CommService {
 					msgToController.setMsg("图片复制失败！请重新上传图片");
 					return msgToController;
 				}
-				// 删除sessoin中的图片名称
-				msgToController.setSessionData("remove", "imgName");
 			}
+			// 删除sessoin中的图片名称
+			msgToController.setSessionData("remove", "imgName");
 		} else {
 			msgToController.setState(false);
 			msgToController.setMsg("comm表更新失败");
@@ -372,9 +376,7 @@ public class CommServiceImpl implements CommService {
 		int typeId = (int) msgFromController.getSessionData("typeId");
 		String typeName = typeDao.getTypeByTypeId(typeId).getTypeName();
 		String query = (String) msgFromController.getSessionData("query");
-
-		String imgPath = (String) msgFromController.getRequestData("imgPath")+"/images/comm/";
-		System.out.println(query);
+		
 		//根据typeId 获得商品类型列表
 		List<CommType> commTypes = commTypeDao.getCommTypeByTypeId(typeId);
 		//初始化储存CommJson的列表
@@ -387,8 +389,14 @@ public class CommServiceImpl implements CommService {
 				Release release = releaseDao.getReleaseByCommId(commTypes.get(i).getCommId());
 				String availableTime = release.getStartTime()+" 至 "+release.getEndTime();
 				String releaseTime = release.getReleaseTime().toString();
+				// 图片显示路径
+				String img = release.getImg();
+				if (img.length() != 0)
+					img = msgFromController.getRequestData("imgPath") + "/images/comm/" + img;
+				else
+					img = msgFromController.getRequestData("imgPath") + "/images/type/" + commTypes.get(i).getTypeId() + ".jpg";
 				//将数据封装到commJson
-				CommJson commJson = new CommJson(typeName,release.getTitle(),releaseTime,availableTime,imgPath+release.getImg(),release.getPrice(),commTypes.get(i).getCommId(),typeId);
+				CommJson commJson = new CommJson(typeName,release.getTitle(),releaseTime,availableTime,img,release.getPrice(),commTypes.get(i).getCommId(),typeId);
 				//添加到commjsons
 				commJsons.add(commJson);
 			}
@@ -400,8 +408,14 @@ public class CommServiceImpl implements CommService {
 				//通过commId获得release
 				String availableTime = release.getStartTime()+" 至 "+release.getEndTime();
 				String releaseTime = release.getReleaseTime().toString();
+				// 图片显示路径
+				String img = release.getImg();
+				if (img.length() != 0)
+					img = msgFromController.getRequestData("imgPath") + "/images/comm/" + img;
+				else
+					img = msgFromController.getRequestData("imgPath") + "/images/type/" + commTypes.get(i).getTypeId() + ".jpg";
 				//将数据封装到commJson
-				CommJson commJson = new CommJson(typeName,release.getTitle(),releaseTime,availableTime,imgPath+release.getImg(),release.getPrice(),releases.get(i).getCommId(),typeId);
+				CommJson commJson = new CommJson(typeName,release.getTitle(),releaseTime,availableTime,img,release.getPrice(),releases.get(i).getCommId(),typeId);
 				//添加到commjsons
 				commJsons.add(commJson);
 			}

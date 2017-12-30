@@ -67,7 +67,7 @@ public class CommController {
 	// 发布
 	@RequestMapping(value = "releaseComm")
 	@ResponseBody
-	public MsgJson<String, Object> releaseComm(@RequestBody ReleaseJson releaseJson, HttpServletRequest request) {
+	public MsgJson<String, Object> releaseComm(@RequestBody ReleaseJson releaseJson, HttpServletRequest request,HttpSession session) {
 
 		// 初始化传递给Service的数据
 		MsgJson<String, Object> msgToService = MyMsgJson.newMsgjson();
@@ -90,6 +90,8 @@ public class CommController {
 			// 操作失败 返回发布页面
 			msgToView.setJsonData("page", "/shareOnline/main/turn/release");
 		}
+		// 删除图片的名称session
+		MyMsgJson.setData(msgFromService, session);
 		// 状态消息
 		msgToView.setMsg(msgFromService.getMsg());
 		return msgToView;
@@ -122,7 +124,8 @@ public class CommController {
 			// 操作失败 返回发布页面
 			msgToView.setJsonData("page", "/shareOnline/main/turn/revise");
 		}
-		MyMsgJson.setData(msgToView, session);
+		// 删除图片名称session
+		MyMsgJson.setData(msgFromService, session);
 		// 状态消息
 		msgToView.setMsg(msgFromService.getMsg());
 		return msgToView;

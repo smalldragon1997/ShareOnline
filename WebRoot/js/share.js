@@ -57,7 +57,8 @@ $(document).ready(function() {
 			},
 			registerEmail : {
 				required : true,
-				email : true
+				email : true,
+				rangelength : [ 4, 30 ]
 			},
 			registerPassword : {
 				rangelength : [ 6, 16 ],
@@ -75,7 +76,8 @@ $(document).ready(function() {
 			},
 			registerEmail : {
 				required : "必须输入邮箱",
-				email : "请输入正确的邮箱格式"
+				email : "请输入正确的邮箱格式",
+				rangelength : "邮箱长度不能大于30"
 			},
 			registerPassword : {
 				rangelength : "密码长度在6-16为位",
@@ -125,7 +127,8 @@ $(document).ready(function() {
 		rules : { //name
 			loginEmail : {
 				required : true,
-				email : true
+				email : true,
+				rangelength : [ 4, 30 ],
 			},
 			loginPassword : {
 				rangelength : [ 6, 16 ],
@@ -135,7 +138,8 @@ $(document).ready(function() {
 		messages : {
 			loginEmail : {
 				required : "必须输入邮箱",
-				email : "请输入正确的邮箱格式"
+				email : "请输入正确的邮箱格式",
+				rangelength : "邮箱长度不能大于30"
 			},
 			loginPassword : {
 				rangelength : "密码长度在6-16为位",
